@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  api:
+    depends_on:
+      - db
+    build: .
+    ports:
+      - 3000:3000
+
+  db:
+    image: mysql/mysql-server:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pairs
+    ports:
+      - '3306:3306'
+    volumes:
+      - technical-challenges:/var/lib/mysql
+volumes:
+  technical-challenges:
